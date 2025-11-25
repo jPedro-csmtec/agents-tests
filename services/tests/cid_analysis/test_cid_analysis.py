@@ -38,10 +38,10 @@ def test_returns_correct_information():
     }
 
     response = request_base(url, data)
-    data = response.json()["data"]["cid"]
+    data = response.json()["data"]
 
     assert response.status_code == 200
-    assert "J10.1" in data
-    assert "vírus identificado" in data
-    assert "tosse" in data
-    assert "dor de garganta" in data
+    assert "J10.1" in data["cid"]
+    assert "vírus identificado" in data["result"]
+    assert "tosse" in data["result"]
+    assert "dor de garganta" in data["result"]

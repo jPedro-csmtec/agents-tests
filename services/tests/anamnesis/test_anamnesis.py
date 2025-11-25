@@ -43,7 +43,7 @@ def test_returns_correct_cid():
 
     response = request_base(url, data)
 
-    data = response.json()["data"]
+    data = response.json()["data"]["summaryReport"]
 
     assert response.status_code == 200
     assert "G44" in data["cid"]

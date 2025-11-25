@@ -19,6 +19,8 @@ def test_correct_results_pet_fur():
 
 
 def test_correct_result_medicine():
+    data["text_allergy"] = "Não posso tomar alguns remédios como dipirona e nimesulida por me fazerem mal."
+
     response = request_base(url, data)
     return_data = response.json()
 

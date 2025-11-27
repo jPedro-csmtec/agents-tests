@@ -1,7 +1,8 @@
+from typing import Any
 from services.tests.general import request_base, url_base
 
 url = f"{url_base}/allergy-info/allergy"
-data = {"text_allergy": "", "model": "gpt-4o-mini"}
+data = {"text_allergy": Any, "model": "gpt-4o-mini"}
 
 def test_correct_results_pet_fur():
     data["text_allergy"] = "Pelos de gatos e cachorros, ainda mais aqueles com pelos maiores, acabam comigo, sempre espirro muito, sinto os olhos lacrimejando e fico com certa dificuldade de respirar por conta de ficar todo entupido, é terrível."
@@ -45,3 +46,12 @@ def test_correct_result_all():
     assert "pelos de cachorro" in alerts_data["causes"]
     assert "pelos" in alerts_data["reason_return"]
     assert "espirros" in alerts_data["reason_return"]
+
+def test_error_invalid_input():
+    data["text_allergy"] = 500
+
+    response = request_base(url, data)
+    result_data = response.json()["detail"][0]
+
+    assert response.status_code == 422
+    assert "Input should be a valid string" in result_data["msg"]

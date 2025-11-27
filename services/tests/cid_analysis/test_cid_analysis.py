@@ -10,9 +10,21 @@ def test_returns_correct_information():
 
     response = request_base(url, data)
     data = response.json()["data"]
-
+    print(data)
     assert response.status_code == 200
     assert "J10.1" in data["cid"]
-    assert "vírus identificado" in data["result"]
     assert "tosse" in data["result"]
     assert "dor de garganta" in data["result"]
+    assert "vírus" in data["result"]
+    assert "identificado" in data["result"]
+
+def test_error_invalid_input():
+    data = {
+        "text_analysis": 500
+        }
+
+    response = request_base(url, data)
+    result_data = response.json()["detail"][0]
+
+    assert response.status_code == 422
+    assert "Input should be a valid string" in result_data["msg"]

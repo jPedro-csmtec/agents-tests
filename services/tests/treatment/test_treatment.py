@@ -17,3 +17,14 @@ def test_correct_results():
     assert "teste pcr para covid-19" in return_data.lower()
     assert "repouso" in return_data.lower()
     assert "hidratação adequada" in return_data.lower()    
+
+def test_error_invalid_input():
+    data = {
+        "text_treatment": 500
+    }
+
+    response = request_base(url, data)
+    result_data = response.json()["detail"][0]
+
+    assert response.status_code == 422
+    assert "Input should be a valid string" in result_data["msg"]

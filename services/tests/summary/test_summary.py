@@ -1,7 +1,8 @@
+from typing import Any
 from services.tests.general import request_base, url_base
 
 url = f"{url_base}/summary-info/summary"
-data = {"text_summary": "", "agent_resume": True}
+data = {"text_summary": Any, "agent_resume": True}
 
 
 def test_correct_results():
@@ -20,3 +21,12 @@ def test_correct_results():
     assert "teste pcr para covid-19" in result_data.lower()
     assert "repouso" in result_data.lower()
     assert "hidratação" in result_data.lower()
+
+def test_error_invalid_input():
+    data["text_summary"] = 500
+
+    response = request_base(url, data)
+    result_data = response.json()["detail"][0]
+
+    assert response.status_code == 422
+    assert "Input should be a valid string" in result_data["msg"]

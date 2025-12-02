@@ -1,7 +1,7 @@
 from typing import Any
-from services.tests.general import request_base, url_base
+from services.tests.general import request_base
 
-url = f"{url_base}/summary-info/summary"
+url = "summary-info/summary"
 data = {"text_summary": Any, "agent_resume": True}
 
 

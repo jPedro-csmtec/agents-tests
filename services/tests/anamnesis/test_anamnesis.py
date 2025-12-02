@@ -1,6 +1,6 @@
-from services.tests.general import request_base, url_base
+from services.tests.general import request_base
 
-url = f"{url_base}/anamnesis-info/anamnesis-strunction-data"
+url = "anamnesis-info/anamnesis-strunction-data"
 
 
 def test_returns_correct_cid():

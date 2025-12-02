@@ -1,6 +1,6 @@
-from services.tests.general import request_base, url_base
+from services.tests.general import request_base
 
-url = f"{url_base}/treatment-info/treatment"
+url = "treatment-info/treatment"
 
 
 def test_correct_results():

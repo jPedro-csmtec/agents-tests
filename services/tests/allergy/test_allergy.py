@@ -1,7 +1,7 @@
 from typing import Any
-from services.tests.general import request_base, url_base
+from services.tests.general import request_base
 
-url = f"{url_base}/allergy-info/allergy"
+url = "allergy-info/allergy"
 data = {"text_allergy": Any, "model": "gpt-4o-mini"}
 
 

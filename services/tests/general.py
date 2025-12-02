@@ -10,5 +10,6 @@ headers = {
 
 url_base = "/api/v1"
 
+
 def request_base(url: str, data: dict[str, Any]):
     return client.post(url, json=data, headers=headers)

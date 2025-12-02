@@ -4,8 +4,11 @@ from services.tests.general import request_base, url_base
 url = f"{url_base}/allergy-info/allergy"
 data = {"text_allergy": Any, "model": "gpt-4o-mini"}
 
+
 def test_correct_results_pet_fur():
-    data["text_allergy"] = "Pelos de gatos e cachorros, ainda mais aqueles com pelos maiores, acabam comigo, sempre espirro muito, sinto os olhos lacrimejando e fico com certa dificuldade de respirar por conta de ficar todo entupido, é terrível."
+    data["text_allergy"] = (
+        "Pelos de gatos e cachorros, ainda mais aqueles com pelos maiores, acabam comigo, sempre espirro muito, sinto os olhos lacrimejando e fico com certa dificuldade de respirar por conta de ficar todo entupido, é terrível."
+    )
 
     response = request_base(url, data)
     return_data = response.json()
@@ -19,7 +22,9 @@ def test_correct_results_pet_fur():
 
 
 def test_correct_result_medicine():
-    data["text_allergy"] = "Não posso tomar alguns remédios como dipirona e nimesulida por me fazerem mal."
+    data["text_allergy"] = (
+        "Não posso tomar alguns remédios como dipirona e nimesulida por me fazerem mal."
+    )
 
     response = request_base(url, data)
     return_data = response.json()
@@ -30,8 +35,11 @@ def test_correct_result_medicine():
     assert "nimesulida" in medicines_data["active_ingredients"]
     assert "dipirona" in medicines_data["active_ingredients"]
 
+
 def test_correct_result_all():
-    data["text_allergy"] = "Pelos de gatos e cachorros, ainda mais aqueles com pelos maiores, acabam comigo, sempre espirro muito, sinto os olhos lacrimejando e fico com certa dificuldade de respirar por conta de ficar todo entupido, é terrível. Também não posso tomar alguns remédios como dipirona e nimesulida por me fazerem mal."
+    data["text_allergy"] = (
+        "Pelos de gatos e cachorros, ainda mais aqueles com pelos maiores, acabam comigo, sempre espirro muito, sinto os olhos lacrimejando e fico com certa dificuldade de respirar por conta de ficar todo entupido, é terrível. Também não posso tomar alguns remédios como dipirona e nimesulida por me fazerem mal."
+    )
 
     response = request_base(url, data)
     return_data = response.json()
@@ -46,6 +54,7 @@ def test_correct_result_all():
     assert "pelos de cachorro" in alerts_data["causes"]
     assert "pelos" in alerts_data["reason_return"]
     assert "espirros" in alerts_data["reason_return"]
+
 
 def test_error_invalid_input():
     data["text_allergy"] = 500

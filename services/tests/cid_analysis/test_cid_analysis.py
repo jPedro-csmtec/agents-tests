@@ -18,10 +18,9 @@ def test_returns_correct_information():
     assert "vírus" in data["result"]
     assert "identificado" in data["result"]
 
+
 def test_error_invalid_input():
-    data = {
-        "text_analysis": 500
-        }
+    data = {"text_analysis": 500}
 
     response = request_base(url, data)
     result_data = response.json()["detail"][0]

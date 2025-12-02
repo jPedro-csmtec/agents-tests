@@ -20,9 +20,7 @@ def test_correct_results():
 
 
 def test_error_invalid_input():
-    data = {
-        "text_info": 500
-        }
+    data = {"text_info": 500}
 
     response = request_base(url, data)
     result_data = response.json()["detail"][0]

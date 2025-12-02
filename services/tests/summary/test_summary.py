@@ -22,6 +22,7 @@ def test_correct_results():
     assert "repouso" in result_data.lower()
     assert "hidratação" in result_data.lower()
 
+
 def test_error_invalid_input():
     data["text_summary"] = 500
 

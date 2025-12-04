@@ -4,7 +4,7 @@ url = "anamnesis-info/anamnesis-strunction-data"
 
 
 def test_returns_correct_cid():
-    data = {
+    input = {
         "PatientEntity": {
             "birth_date": "1999-09-01T00:00:00-03:00",
             "genre": "M",
@@ -41,9 +41,9 @@ def test_returns_correct_cid():
         "files": [],
     }
 
-    response = request_base(url, data)
+    response = request_base(url, input)
 
-    data = response.json()["data"]["summaryReport"]
+    return_data = response.json()["data"]["summaryReport"]
 
     assert response.status_code == 200
-    assert "G44" in data["cid"]
+    assert "G44" in return_data["cid"]

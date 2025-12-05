@@ -10,3 +10,6 @@ headers = {
 
 def request_base(url: str, input: dict[str, Any]):
     return client.post(f"/api/v1/{url}", json=input, headers=headers)
+
+def get_return_data(response: Any):
+    return response.json()["data"]["result"].lower()

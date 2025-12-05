@@ -13,10 +13,10 @@ def test_correct_results_influenza():
 
     response = request_base(url, input)
     return_data = response.json()["data"]
-    print(return_data)
 
     cid: str = return_data["cid"]
     result: str = return_data["result"].lower()
+    print(result)
 
     assert response.status_code == 200
     assert "J10.1" in cid
@@ -33,10 +33,10 @@ def test_correct_results_mieloma_multiplo():
 
     response = request_base(url, input)
     return_data = response.json()["data"]
-    print(return_data)
 
     cid: str = return_data["cid"]
     result: str = return_data["result"].lower()
+    print(result)
 
     assert response.status_code == 200
     assert "C90.0" in cid
@@ -57,7 +57,6 @@ def test_correct_results_chagas():
 
     cid: str = return_data["cid"]
     result: str = return_data["result"].lower()
-    print(cid)
     print(result)
 
     assert response.status_code == 200

@@ -12,6 +12,7 @@ def test_correct_results_influenza():
 
     response = request_base(url, input)
     return_data: str = get_return_data(response)
+    print(return_data)
 
     assert response.status_code == 200
     assert "febre alta" in return_data
@@ -28,7 +29,6 @@ def test_correct_results_mieloma_multiplo():
 
     response = request_base(url, input)
     return_data: str = get_return_data(response)
-
     print(return_data)
 
     assert response.status_code == 200
